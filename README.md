@@ -2,6 +2,8 @@
 
 > A Vue.js project
 
+[Demo](https://patrickoliveira94.github.io/controle-financeiro/#/)
+
 ## Build Setup
 
 ``` bash

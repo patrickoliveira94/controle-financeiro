@@ -1,12 +1,14 @@
 <template>
-    <div class="quotations">
-        <h1>{{ title }}</h1>
-        <HelloWorld />
-    </div>
+  <div class="quotations">
+    <h1>{{ title }}</h1>
+    <Currencies />
+    <Stocks />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './HelloWorld'
+import Currencies from './Currencies'
+import Stocks from './Stocks'
 
 export default {
   name: 'Quotations',
@@ -16,24 +18,15 @@ export default {
     }
   },
   components: {
-    HelloWorld
+    Currencies,
+    Stocks
   }
 }
 </script>
 
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="sass" scoped>
+  .quotations
+
+    h1
+      color: blue
 </style>

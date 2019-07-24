@@ -2,6 +2,6 @@ import { http } from './config'
 
 export default {
   list: () => {
-    return http.get('results')
+    return http.get('')
   }
 }

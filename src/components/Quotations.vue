@@ -28,5 +28,5 @@ export default {
   .quotations
 
     h1
-      color: blue
+      color: #3b3b3b
 </style>

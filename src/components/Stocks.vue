@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="stock of stocks" :key="stock.name">
+        <tr v-for="stock of stocks" :key="stock.name" v-bind:class="stock.variation >= 0 ? 'positive' : 'negative' ">
           <td>{{ stock.name }}</td>
           <td>{{ stock.location }}</td>
           <td>{{ stock.points }}</td>
@@ -50,8 +50,27 @@ export default {
       color: gray
 
     table
+      margin: 0 auto
+      min-width: 600px
+      border-spacing: 0
 
-      thead
-        background-color: gray
-        color: white
+      tr
+
+        &.positive
+          background-color: #478236
+          color: white
+
+        &.negative
+          background-color: #e06666
+          color: white
+
+        th
+          background-color: #3a3a3a
+          color: white
+          padding: 10px
+          text-align: left
+
+        td
+          text-align: left
+          padding: 5px 10px
 </style>

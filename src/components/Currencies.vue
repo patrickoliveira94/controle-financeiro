@@ -2,22 +2,18 @@
   <div class="currencies">
     <h1>{{ title }}</h1>
     <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Valor de compra</th>
-          <th>Valor de venda</th>
-          <th>Variação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="currencie of currencies" :key="currencie.name">
-          <td>{{ currencie.name }}</td>
-          <td>{{ currencie.buy }}</td>
-          <td>{{ currencie.sell }}</td>
-          <td>{{ currencie.variation }}</td>
-        </tr>
-      </tbody>
+      <tr>
+        <th>Nome</th>
+        <th>Compra</th>
+        <th>Venda</th>
+        <th>Variação</th>
+      </tr>
+      <tr v-for="currencie of currencies" :key="currencie.name" v-bind:class="currencie.variation >= 0 ? 'positive' : 'negative' ">
+        <td>{{ currencie.name }}</td>
+        <td>{{ currencie.buy }}</td>
+        <td>{{ currencie.sell }}</td>
+        <td>{{ currencie.variation }}</td>
+      </tr>
     </table>
   </div>
 </template>
@@ -50,8 +46,27 @@ export default {
       color: gray
 
     table
+      margin: 0 auto
+      min-width: 600px
+      border-spacing: 0
 
-      thead
-        background-color: gray
-        color: white
+      tr
+
+        &.positive
+          background-color: #478236
+          color: white
+
+        &.negative
+          background-color: #e06666
+          color: white
+
+        th
+          background-color: #3a3a3a
+          color: white
+          padding: 10px
+          text-align: left
+
+        td
+          text-align: left
+          padding: 5px 10px
 </style>

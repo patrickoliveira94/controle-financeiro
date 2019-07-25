@@ -1,20 +1,25 @@
 <template>
   <div class="currencies">
     <h2>{{ title }}</h2>
-    <table>
-      <tr>
-        <th>Nome</th>
-        <th>Compra</th>
-        <th>Venda</th>
-        <th>Variação</th>
-      </tr>
-      <tr v-for="currencie of currencies" :key="currencie.name">
-        <td>{{ currencie.name }}</td>
-        <td>{{ currencie.buy }}</td>
-        <td>{{ currencie.sell }}</td>
-        <td><span class="tag" v-if="currencie.variation" v-bind:class="currencie.variation >= 0 ? 'positive' : 'negative' ">{{ currencie.variation }} %</span></td>
-      </tr>
-    </table>
+    <div class="cards">
+      <div v-for="currencie of currencies" :key="currencie.name">
+        <div v-if="currencie.name" class="card">
+          <h3>{{ currencie.name }}</h3>
+          <div class="card-info">
+            <span class="card-info-label">Compra</span>
+            <span class="card-info-value">{{ currencie.buy ? currencie.buy : '--' }}</span>
+          </div>
+          <div class="card-info">
+            <span class="card-info-label">Venda</span>
+            <span class="card-info-value">{{ currencie.sell ? currencie.sell : '--' }}</span>
+          </div>
+          <div class="card-info">
+            <span class="card-info-label">Variação</span>
+            <span class="card-info-value" v-bind:class=" currencie.variation >= 0 ? 'positive' : 'negative' ">{{ currencie.variation ? currencie.variation + '%' : '--' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,31 +50,31 @@ export default {
     h1
       color: gray
 
-    table
-      margin: 0 auto
-      min-width: 600px
-      border-spacing: 0
+    .cards
+      display: flex
+      justify-content: center
+      flex-wrap: wrap
 
-      tr
+      .card
+        width: 200px
+        height: 270px
+        background-color: #111417
+        border: 1px solid white
+        border-radius: 10px
+        padding: 10px
+        margin: 10px
 
-        th
-          background-color: #111417
-          color: white
-          padding: 10px
-          text-align: left
-          border-bottom: 1px solid white
+        .card-info
+          display: flex
+          flex-direction: column
+          margin: 20px 0
+          min-height: 55px
 
-        td
-          text-align: left
-          padding: 5px 10px
-
-          .tag
-            padding: 2px
+          .card-info-value
+            margin: 5px 50px
+            padding: 3px
+            font-weight: bold
             border-radius: 10px
-            min-width: 70px
-            display: block
-            text-align: center
-            color: white
 
             &.positive
               background-color: #0acf97

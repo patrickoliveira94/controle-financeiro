@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="register">
     <form>
       <h1> {{ title }} </h1>
 
@@ -10,46 +10,89 @@
       </div>
 
       <div class="form-group">
+        <span class="form-label"> Nome </span>
+        <input type="text" v-model="name">
+      </div>
+
+      <div class="form-group">
         <span class="form-label"> E-mail </span>
         <input type="email" v-model="email">
       </div>
 
-      <button v-on:click="login"> Entrar </button>
+      <button v-on:click="addUser"> Cadastar </button>
+      <router-link to="/" tag="span" class="link">Já possui cadastro? Faça seu login!</router-link>
     </form>
-
-    <router-link to="/register" tag="span" class="link">Ainda não possui cadastro? Faça já o seu!</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   data () {
     return {
-      title: 'Faça seu login',
+      title: 'Faça seu cadastro',
+      name: '',
       email: '',
       users: [],
       errors: []
     }
   },
   methods: {
-    login () {
+    addUser () {
+      this.checkErrors()
+      if (this.errors.length === 0) {
+        if (!this.userExists()) {
+          this.users.push({ name: this.name, email: this.email })
+          this.name = ''
+          this.email = ''
+          this.errors = []
+        } else {
+          this.errors.push('Usuário já existe!')
+        }
+      }
+    },
+    userExists () {
       var emails = this.users.map(function (user) {
         return user.email
       })
-      if (emails.includes(this.email)) {
-        window.location.href = '#/home'
+      return emails.includes(this.email)
+    },
+    checkErrors () {
+      this.errors = []
+
+      if (this.name && this.validEmail(this.email)) {
+        return true
       }
+
+      if (!this.name) {
+        this.errors.push('Informe seu nome!')
+      }
+      if (!this.validEmail(this.email)) {
+        this.errors.push('Informe um e-mail válido!')
+      }
+    },
+    validEmail: function (email) {
+      // eslint-disable-next-line
+      var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return regex.test(email)
     }
   },
   mounted () {
     if (localStorage.getItem('users')) this.users = JSON.parse(localStorage.getItem('users'))
+  },
+  watch: {
+    users: {
+      handler () {
+        localStorage.setItem('users', JSON.stringify(this.users))
+      },
+      deep: true
+    }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-  .login
+  .register
     margin: 50px auto
     padding: 20px
     max-width: 500px
@@ -83,7 +126,7 @@ export default {
       border-radius: 20px
       border: none
       padding: 10px
-      margin: 20px 0 10px
+      margin: 20px 0 8px
       outline: none
       cursor: pointer
 

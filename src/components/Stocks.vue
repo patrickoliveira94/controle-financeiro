@@ -1,6 +1,6 @@
 <template>
   <div class="stocks">
-    <h1>{{ title }}</h1>
+    <h2>{{ title }}</h2>
     <table>
       <thead>
         <tr>
@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="stock of stocks" :key="stock.name" v-bind:class="stock.variation >= 0 ? 'positive' : 'negative' ">
+        <tr v-for="stock of stocks" :key="stock.name">
           <td>{{ stock.name }}</td>
           <td>{{ stock.location }}</td>
           <td>{{ stock.points }}</td>
-          <td>{{ stock.variation }}</td>
+          <td><span class="tag" v-bind:class="stock.variation >= 0 ? 'positive' : 'negative' ">{{ stock.variation }} %</span></td>
         </tr>
       </tbody>
     </table>
@@ -56,21 +56,28 @@ export default {
 
       tr
 
-        &.positive
-          background-color: #478236
-          color: white
-
-        &.negative
-          background-color: #e06666
-          color: white
-
         th
-          background-color: #3a3a3a
+          background-color: #111417
           color: white
           padding: 10px
           text-align: left
+          border-bottom: 1px solid white
 
         td
           text-align: left
           padding: 5px 10px
+
+          .tag
+            padding: 2px
+            border-radius: 10px
+            min-width: 70px
+            display: block
+            text-align: center
+            color: white
+
+            &.positive
+              background-color: #0acf97
+
+            &.negative
+              background-color: #e06666
 </style>

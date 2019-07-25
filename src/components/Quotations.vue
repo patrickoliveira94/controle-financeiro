@@ -28,5 +28,7 @@ export default {
   .quotations
 
     h1
-      color: #3b3b3b
+      margin: 5px 0
+      border-bottom: 1px solid white
+      padding-bottom: 15px
 </style>

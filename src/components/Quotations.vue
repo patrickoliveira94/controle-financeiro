@@ -1,6 +1,9 @@
 <template>
   <div class="quotations">
-    <h1>{{ title }}</h1>
+    <header>
+      <h1>{{ title }}</h1>
+      <span class="link" @click="logout()">Sair</span>
+    </header>
     <Currencies />
     <Stocks />
   </div>
@@ -20,6 +23,17 @@ export default {
   components: {
     Currencies,
     Stocks
+  },
+  methods: {
+    logout () {
+      sessionStorage.removeItem('auth')
+      this.$router.push({path: '/'})
+    }
+  },
+  created () {
+    if (!sessionStorage.getItem('auth')) {
+      this.$router.push({path: '/'})
+    }
   }
 }
 </script>
@@ -27,8 +41,13 @@ export default {
 <style lang="sass" scoped>
   .quotations
 
-    h1
+    header
       margin: 5px 0
       border-bottom: 1px solid white
-      padding-bottom: 15px
+
+      .link
+        cursor: pointer
+        position: absolute
+        top: 32px
+        right: 30px
 </style>

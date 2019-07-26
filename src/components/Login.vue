@@ -53,7 +53,7 @@ export default {
       })
 
       if (success) {
-        window.location.href = '#/home'
+        vm.$router.push({ path: 'home' })
       } else {
         this.errors.push('E-mail ou senha inválido!')
       }

@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <form>
+    <form @submit.prevent="addUser()">
       <h1> {{ title }} </h1>
 
       <div v-if="errors.length">
@@ -24,7 +24,7 @@
         <input type="password" v-model="password">
       </div>
 
-      <button v-on:click="addUser"> Cadastar </button>
+      <button type="submit"> Cadastar </button>
       <router-link to="/" tag="span" class="link">Já possui cadastro? Faça seu login!</router-link>
     </form>
   </div>

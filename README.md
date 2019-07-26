@@ -2,7 +2,7 @@
 
 > A Vue.js project
 
-> [Demo](https://patrickoliveira94.github.io/controle-financeiro/#/)
+> [Demo](https://patrickoliveira94.github.io/controle-financeiro/)
 
 ## Build Setup
 

@@ -19,6 +19,11 @@
         <input type="email" v-model="email">
       </div>
 
+      <div class="form-group">
+        <span class="form-label"> Senha </span>
+        <input type="password" v-model="password">
+      </div>
+
       <button v-on:click="addUser"> Cadastar </button>
       <router-link to="/" tag="span" class="link">Já possui cadastro? Faça seu login!</router-link>
     </form>
@@ -26,6 +31,8 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
+
 export default {
   name: 'Register',
   data () {
@@ -33,6 +40,7 @@ export default {
       title: 'Faça seu cadastro',
       name: '',
       email: '',
+      password: '',
       users: [],
       errors: []
     }
@@ -42,12 +50,13 @@ export default {
       this.checkErrors()
       if (this.errors.length === 0) {
         if (!this.userExists()) {
-          this.users.push({ name: this.name, email: this.email })
+          this.users.push({ name: this.name, email: this.email, password: md5(this.password) })
           this.name = ''
           this.email = ''
+          this.password = ''
           this.errors = []
         } else {
-          this.errors.push('Usuário já existe!')
+          this.errors.push('Usuário já cadastrado!')
         }
       }
     },
@@ -60,7 +69,7 @@ export default {
     checkErrors () {
       this.errors = []
 
-      if (this.name && this.validEmail(this.email)) {
+      if (this.name && this.validEmail(this.email) && this.password) {
         return true
       }
 
@@ -69,6 +78,9 @@ export default {
       }
       if (!this.validEmail(this.email)) {
         this.errors.push('Informe um e-mail válido!')
+      }
+      if (!this.password) {
+        this.errors.push('Informe uma senha!')
       }
     },
     validEmail: function (email) {
@@ -95,7 +107,7 @@ export default {
   .register
     margin: 50px auto
     padding: 20px
-    max-width: 500px
+    max-width: 350px
     background-color: #111417
     border: 1px solid white
     border-radius: 20px

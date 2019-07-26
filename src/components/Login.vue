@@ -14,6 +14,11 @@
         <input type="email" v-model="email">
       </div>
 
+      <div class="form-group">
+        <span class="form-label"> Senha </span>
+        <input type="password" v-model="password">
+      </div>
+
       <button v-on:click="login"> Entrar </button>
     </form>
 
@@ -22,23 +27,35 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
+
 export default {
   name: 'Login',
   data () {
     return {
       title: 'Faça seu login',
       email: '',
+      password: '',
       users: [],
       errors: []
     }
   },
   methods: {
     login () {
-      var emails = this.users.map(function (user) {
-        return user.email
+      var vm = this
+      var success = false
+      this.errors = []
+
+      this.users.forEach(function (user) {
+        if (user.email === vm.email && user.password === md5(vm.password)) {
+          success = true
+        }
       })
-      if (emails.includes(this.email)) {
+
+      if (success) {
         window.location.href = '#/home'
+      } else {
+        this.errors.push('E-mail ou senha inválido!')
       }
     }
   },
@@ -52,7 +69,7 @@ export default {
   .login
     margin: 50px auto
     padding: 20px
-    max-width: 500px
+    max-width: 350px
     background-color: #111417
     border: 1px solid white
     border-radius: 20px

@@ -23,6 +23,5 @@ export default new Router({
       name: 'Quotations',
       component: Quotations
     }
-  ],
-  mode: 'history'
+  ]
 })

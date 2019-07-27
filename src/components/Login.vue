@@ -54,7 +54,7 @@ export default {
         sessionStorage.setItem('auth', md5(this.email))
         vm.$router.push({ path: '/' })
       } else {
-        this.errors.push('E-mail ou senha inválido!')
+        this.errors.push('E-mail ou senha inválida!')
       }
     }
   },

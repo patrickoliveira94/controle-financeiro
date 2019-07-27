@@ -9,23 +9,25 @@
         </ul>
       </div>
 
-      <div class="form-group">
-        <span class="form-label"> Nome </span>
-        <input type="text" v-model="name">
+      <div class="success" v-if="success">
+        <span>Seu usuário foi cadastrado com sucesso!</span>
+        <router-link to="/login" tag="span" class="link">Clique aqui para fazer o login</router-link>
       </div>
 
       <div class="form-group">
-        <span class="form-label"> E-mail </span>
-        <input type="email" v-model="email">
+        <input type="text" placeholder="Nome" v-model="name">
       </div>
 
       <div class="form-group">
-        <span class="form-label"> Senha </span>
-        <input type="password" v-model="password">
+        <input type="email" placeholder="E-mail" v-model="email">
+      </div>
+
+      <div class="form-group">
+        <input type="password" placeholder="Senha" v-model="password">
       </div>
 
       <button type="submit"> Cadastar </button>
-      <router-link to="/" tag="span" class="link">Já possui cadastro? Faça seu login!</router-link>
+      <router-link to="/login" tag="span" class="link">Já possui cadastro? Faça seu login!</router-link>
     </form>
   </div>
 </template>
@@ -42,7 +44,8 @@ export default {
       email: '',
       password: '',
       users: [],
-      errors: []
+      errors: [],
+      success: false
     }
   },
   methods: {
@@ -55,6 +58,7 @@ export default {
           this.email = ''
           this.password = ''
           this.errors = []
+          this.success = true
         } else {
           this.errors.push('Usuário já cadastrado!')
         }
@@ -129,7 +133,7 @@ export default {
         input
           border-radius: 20px
           border: 1px solid gray
-          padding: 5px
+          padding: 5px 10px
           outline: none
 
     button
@@ -151,4 +155,13 @@ export default {
 
       .error
         color: #e06666
+
+    .success
+      display: flex
+      flex-direction: column
+      margin: 5px 0 10px
+      color: #0acf97
+
+      .link
+        text-decoration: underline
 </style>

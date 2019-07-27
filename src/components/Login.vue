@@ -10,13 +10,11 @@
       </div>
 
       <div class="form-group">
-        <span class="form-label"> E-mail </span>
-        <input type="email" v-model="email">
+        <input type="email" placeholder="E-mail" v-model="email">
       </div>
 
       <div class="form-group">
-        <span class="form-label"> Senha </span>
-        <input type="password" v-model="password">
+        <input type="password" placeholder="Senha" v-model="password">
       </div>
 
       <button type="submit"> Entrar </button>
@@ -54,7 +52,7 @@ export default {
 
       if (success) {
         sessionStorage.setItem('auth', md5(this.email))
-        vm.$router.push({ path: 'home' })
+        vm.$router.push({ path: '/' })
       } else {
         this.errors.push('E-mail ou senha inválido!')
       }
@@ -92,7 +90,7 @@ export default {
         input
           border-radius: 20px
           border: 1px solid gray
-          padding: 5px
+          padding: 5px 10px
           outline: none
 
     button

@@ -27,12 +27,12 @@ export default {
   methods: {
     logout () {
       sessionStorage.removeItem('auth')
-      this.$router.push({path: '/'})
+      this.$router.push({path: '/login'})
     }
   },
   created () {
     if (!sessionStorage.getItem('auth')) {
-      this.$router.push({path: '/'})
+      this.$router.push({path: '/login'})
     }
   }
 }

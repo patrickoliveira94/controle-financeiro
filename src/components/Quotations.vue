@@ -4,8 +4,11 @@
       <h1>{{ title }}</h1>
       <span class="link" @click="logout()">Sair</span>
     </header>
-    <Currencies />
-    <Stocks />
+
+    <section class="content">
+      <Currencies />
+      <Stocks />
+    </section>
   </div>
 </template>
 
@@ -42,12 +45,21 @@ export default {
   .quotations
 
     header
-      margin: 5px 0
-      border-bottom: 1px solid white
+      position: fixed
+      width: 100%
+      padding: 5px
+      background-color: #101418
+      border-bottom: 3px solid white
+
+      h1
+        margin: 0
 
       .link
         cursor: pointer
         position: absolute
-        top: 32px
+        top: 15px
         right: 30px
+
+    .content
+      padding: 50px 0
 </style>

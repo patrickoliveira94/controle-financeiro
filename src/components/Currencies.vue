@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
     <div class="cards">
       <div v-for="currencie of currencies" :key="currencie.name">
-        <div v-if="currencie.name" class="card">
+        <div v-if="currencie.name" class="card" @click="loadChart(currencie.name)">
           <h3>{{ currencie.name }}</h3>
           <div class="card-info">
             <span class="card-info-label">Compra</span>
@@ -20,18 +20,33 @@
         </div>
       </div>
     </div>
+
+    <div class="chart">
+      <h3>{{ titleChart }}</h3>
+      <line-example></line-example>
+    </div>
   </div>
 </template>
 
 <script>
 import Quotation from '../services/quotations'
+import LineExample from './LineExample'
 
 export default {
   name: 'Currencies',
   data () {
     return {
       title: 'Moedas',
-      currencies: []
+      currencies: [],
+      titleChart: ''
+    }
+  },
+  components: {
+    LineExample
+  },
+  methods: {
+    loadChart (currencie) {
+      this.titleChart = currencie
     }
   },
   mounted () {
@@ -47,9 +62,6 @@ export default {
     display: flex
     flex-direction: column
 
-    h1
-      color: gray
-
     .cards
       display: flex
       justify-content: center
@@ -63,6 +75,7 @@ export default {
         border-radius: 10px
         padding: 10px
         margin: 10px
+        cursor: pointer
 
         .card-info
           display: flex
@@ -81,4 +94,14 @@ export default {
 
             &.negative
               background-color: #e06666
+
+    .chart
+      width: 900px
+      margin: 10px auto
+
+  @media screen and (max-width: 768px)
+    .currencies
+
+      .chart
+        width: 100%
 </style>

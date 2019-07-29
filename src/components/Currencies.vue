@@ -23,7 +23,7 @@
 
     <div class="chart">
       <h3>{{ titleChart }}</h3>
-      <line-chart :dataLabel="titleChart" :data="dataChart" :backgroundColor="'#0acf97'"></line-chart>
+      <line-chart :dataLabel="titleChart" :data="dataChart" :backgroundColor="'#ffffff8a'"></line-chart>
     </div>
   </div>
 </template>

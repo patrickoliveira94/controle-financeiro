@@ -1,23 +1,19 @@
-# controle-financeiro
+# Controle Financeiro
 
-> A Vue.js project
+> Projeto Vue.js
 
-> [Demo](https://patrickoliveira94.github.io/controle-financeiro/)
+> [Live Preview](https://patrickoliveira94.github.io/controle-financeiro/)
 
-## Build Setup
+## Configurações
 
 ``` bash
-# install dependencies
+# Para instalar as dependências
 npm install
 
-# serve with hot reload at localhost:8080
+# Para rodar o projeto em localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+O projeto está configurado para fazer deploy no gh-pages, para isto, basta fazer checkout em master e rodar o comando:
+```
+npm run deploy
+```

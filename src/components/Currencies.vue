@@ -23,14 +23,14 @@
 
     <div class="chart">
       <h3>{{ titleChart }}</h3>
-      <line-example></line-example>
+      <line-chart :dataLabel="titleChart" :data="dataChart" :backgroundColor="'#0acf97'"></line-chart>
     </div>
   </div>
 </template>
 
 <script>
 import Quotation from '../services/quotations'
-import LineExample from './LineExample'
+import LineChart from './LineChart'
 
 export default {
   name: 'Currencies',
@@ -38,15 +38,20 @@ export default {
     return {
       title: 'Moedas',
       currencies: [],
-      titleChart: ''
+      titleChart: '',
+      dataChart: []
     }
   },
   components: {
-    LineExample
+    LineChart
   },
   methods: {
-    loadChart (currencie) {
-      this.titleChart = currencie
+    loadChart (currencieName) {
+      this.dataChart = this.historyMock()
+      this.titleChart = currencieName
+    },
+    historyMock () {
+      return Array.from({length: 7}, () => Math.floor(Math.random() * 10))
     }
   },
   mounted () {
@@ -103,5 +108,5 @@ export default {
     .currencies
 
       .chart
-        width: 100%
+        width: 90%
 </style>

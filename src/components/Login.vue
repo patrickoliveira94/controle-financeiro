@@ -20,7 +20,7 @@
       <button type="submit"> Entrar </button>
     </form>
 
-    <router-link to="/register" tag="span" class="link">Ainda não possui cadastro? Faça já o seu!</router-link>
+    <router-link to="/register" tag="span" class="link">Ainda não possui cadastro? Faça o seu!</router-link>
   </div>
 </template>
 
